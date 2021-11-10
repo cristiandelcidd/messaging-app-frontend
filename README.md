@@ -1,3 +1,3 @@
 # messaging-app-frontend
 
-https://app.netlify.com/sites/messaging-app-cristiandelcidd
+https://messaging-app-cristiandelcidd.netlify.app/
