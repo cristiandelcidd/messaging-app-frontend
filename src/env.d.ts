@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-interface ImportMetaEnv extends Readonly<Record<string, string>> {
+interface ImportMetaEnv {
   readonly VITE_FIREBASE_APIKEY: string;
   readonly VITE_FIREBASE_AUTHDOMAIN: string;
   readonly VITE_FIREBASE_PROJECTID: string;
