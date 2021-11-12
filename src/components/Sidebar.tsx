@@ -7,10 +7,11 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import SidebarChat from "./SidebarChat";
 import { useStateValue } from "../context/auth/AuthState";
+import { Messages } from "../types/index";
 
 import "./Sidebar.css";
 
-const Sidebar: FC = () => {
+const Sidebar: FC<Messages> = ({ messages }) => {
   const [{ user }, dispatch] = useStateValue();
 
   return (
@@ -36,7 +37,7 @@ const Sidebar: FC = () => {
         </div>
       </div>
       <div className="sidebar__chats">
-        <SidebarChat />
+        <SidebarChat messages={messages} />
       </div>
     </div>
   );

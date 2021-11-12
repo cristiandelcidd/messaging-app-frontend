@@ -1,9 +1,11 @@
 import { useEffect, useState, FC } from "react";
 import { Avatar } from "@mui/material";
 
+import { Messages } from "../types/index";
+
 import "./SidebarChat.css";
 
-const SidebarChat: FC = () => {
+const SidebarChat: FC<Messages> = ({ messages }) => {
   const [seed, setSeed] = useState<number | null>(null);
 
   useEffect(() => {
@@ -17,8 +19,8 @@ const SidebarChat: FC = () => {
 b${seed}.svg`}
       />
       <div className="sidebarChat__info">
-        <h2>Room name</h2>
-        <p>Last message...</p>
+        <h2>Dev Help</h2>
+        <p>{messages[messages.length - 1]?.message}</p>
       </div>
     </div>
   );

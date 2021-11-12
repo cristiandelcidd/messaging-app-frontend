@@ -6,10 +6,10 @@ import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 
 import axios from "./axios";
-
-import "./App.css";
 import { useStateValue } from "./context/auth/AuthState";
 import { DocumentModel } from "./types";
+
+import "./App.css";
 
 const App = () => {
   const [messages, setMessages] = useState<DocumentModel[]>([]);
@@ -41,7 +41,7 @@ const App = () => {
         <Login />
       ) : (
         <div className="app__body">
-          <Sidebar />
+          <Sidebar messages={messages} />
           <Chat messages={messages} />
         </div>
       )}

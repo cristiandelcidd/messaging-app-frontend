@@ -2,11 +2,10 @@ import { FC } from "react";
 import Button from "@mui/material/Button";
 
 import { auth, provider, signInWithPopup } from "../firebase";
-
 import { useStateValue } from "../context/auth/AuthState";
+import { ActionTypes } from "../types/index";
 
 import "./Login.css";
-import { ActionTypes } from "../types/index";
 
 const Login: FC = () => {
   const [{}, dispatch] = useStateValue();

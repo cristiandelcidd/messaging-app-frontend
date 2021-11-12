@@ -1,7 +1,7 @@
 import { UserInformation } from "../firebase";
 
 export interface DocumentModel {
-  _id?: string;
+  _id: string;
   message: string;
   name: string;
   timestamp: string;
@@ -32,3 +32,7 @@ export const setUser = (user: UserInformation): UserActionTypes => ({
   type: ActionTypes.SET_USER,
   user,
 });
+
+export interface Messages {
+  messages: DocumentModel[];
+}

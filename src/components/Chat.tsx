@@ -7,14 +7,17 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import SendIcon from "@mui/icons-material/Send";
 
+import { useStateValue } from "../context/auth/AuthState";
 import axios from "../axios";
-import { DocumentModel } from "../types";
+import { Messages, DocumentModel } from "../types/index";
 
 import "./Chat.css";
 
-const Chat: FC<{ messages: DocumentModel[] }> = ({ messages }) => {
+const Chat: FC<Messages> = ({ messages }) => {
   const [seed, setSeed] = useState<null | number>(null);
   const [input, setInput] = useState<string>("");
+
+  const [{ user }, _] = useStateValue();
 
   const sendMessage = async (e: MouseEvent<HTMLButtonElement>) => {
     if (input.trim().length === 0) {
@@ -25,9 +28,12 @@ const Chat: FC<{ messages: DocumentModel[] }> = ({ messages }) => {
 
     const date = new Date();
 
-    const postFields: DocumentModel = {
+    const postFields: Pick<
+      DocumentModel,
+      "message" | "name" | "received" | "timestamp"
+    > = {
       message: input,
-      name: "cristiandelcidd",
+      name: user?.displayName!,
       timestamp: `${date.toLocaleString("en-US", {
         year: "numeric",
         month: "long",
@@ -53,8 +59,8 @@ const Chat: FC<{ messages: DocumentModel[] }> = ({ messages }) => {
 b${seed}.svg`}
         />
         <div className="chat__headerInfo">
-          <h3>Room Name</h3>
-          <p>Last seen at...</p>
+          <h3>Dev Help</h3>
+          <p>Last seen at {messages[messages.length - 1]?.timestamp}</p>
         </div>
         <div className="chat__headerRight">
           <IconButton>
@@ -69,14 +75,16 @@ b${seed}.svg`}
         </div>
       </div>
       <div className="chat__body">
-        {messages.map((message) => (
+        {messages.map(({ name, message, timestamp }) => (
           <p
-            className={`chat__message ${message.received && "chat__receiver"}`}
-            key={message._id}
+            className={`chat__message ${
+              name === user?.displayName && "chat__receiver"
+            }`}
+            key={Math.random()}
           >
-            <span className="chat__name">{message.name}</span>
-            {message.message}
-            <span className="chat__timestamp">{message.timestamp}</span>
+            <span className="chat__name">{name}</span>
+            {message}
+            <span className="chat__timestamp">{timestamp}</span>
           </p>
         ))}
       </div>
