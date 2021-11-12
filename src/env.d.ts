@@ -10,6 +10,8 @@ interface ImportMetaEnv {
 
   readonly VITE_PUSHER_CLUSTER: string;
   readonly VITE_PUSHER_APPKEY: string;
+
+  readonly VITE_API_URL: string;
 }
 
 interface ImportMeta {

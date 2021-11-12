@@ -25,7 +25,11 @@ const Login: FC = () => {
   return (
     <div className="login">
       <div className="login__container">
-        <img src="whatsapp.png" alt="whatsapp" draggable={false} />
+        <img
+          src="https://i.pinimg.com/originals/91/9d/f0/919df067a8fbd22ce7b6f401b7688b35.png"
+          alt="whatsapp"
+          draggable={false}
+        />
         <div className="login__text">
           <h1>Sign in to WhatsApp Web</h1>
         </div>
