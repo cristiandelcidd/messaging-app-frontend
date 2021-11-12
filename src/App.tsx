@@ -5,27 +5,24 @@ import Chat from "./components/Chat";
 import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 
-import axios from "./components/axios";
+import axios from "./axios";
 
 import "./App.css";
-
-interface DocumentModel {
-  name: string;
-  message: string;
-  timestamp: string;
-  received: boolean;
-}
+import { useStateValue } from "./context/auth/AuthState";
+import { DocumentModel } from "./types";
 
 const App = () => {
   const [messages, setMessages] = useState<DocumentModel[]>([]);
-  const [user, setUser] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     axios.get("/messages/sync").then((res) => setMessages(res.data));
   }, []);
 
   useEffect(() => {
-    const pusher = new Pusher("6fce6cf146bc0f88825a", { cluster: "us2" });
+    const pusher = new Pusher(import.meta.env.VITE_PUSHER_APPKEY, {
+      cluster: import.meta.env.VITE_PUSHER_CLUSTER,
+    });
 
     const channel = pusher.subscribe("messages");
     channel.bind("inserted", (data: any) => {
@@ -37,8 +34,6 @@ const App = () => {
       channel.unsubscribe();
     };
   }, [messages]);
-
-  console.log(messages);
 
   return (
     <div className="app">

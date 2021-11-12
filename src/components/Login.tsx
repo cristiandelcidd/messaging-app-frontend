@@ -1,11 +1,25 @@
-import "./Login.css";
+import { FC } from "react";
 import Button from "@mui/material/Button";
 
 import { auth, provider, signInWithPopup } from "../firebase";
 
-const Login = () => {
+import { useStateValue } from "../context/auth/AuthState";
+
+import "./Login.css";
+import { ActionTypes } from "../types/index";
+
+const Login: FC = () => {
+  const [{}, dispatch] = useStateValue();
+
   const signIn = () => {
-    signInWithPopup(auth, provider).then(console.log).catch(console.log);
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        dispatch({
+          type: ActionTypes.SET_USER,
+          user: result.user,
+        });
+      })
+      .catch(console.log);
   };
 
   return (

@@ -7,17 +7,10 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import SendIcon from "@mui/icons-material/Send";
 
-import axios from "./axios";
+import axios from "../axios";
+import { DocumentModel } from "../types";
 
 import "./Chat.css";
-
-interface DocumentModel {
-  _id?: string;
-  message: string;
-  name: string;
-  timestamp: string;
-  received: boolean;
-}
 
 const Chat: FC<{ messages: DocumentModel[] }> = ({ messages }) => {
   const [seed, setSeed] = useState<null | number>(null);

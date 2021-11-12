@@ -1,12 +1,15 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
-  readonly VITE_APIKEY: string;
-  readonly VITE_AUTHDOMAIN: string;
-  readonly VITE_PROJECTID: string;
-  readonly VITE_STORAGEBUCKET: string;
-  readonly VITE_MESSAGINGSENDERID: string;
-  readonly VITE_APPID: string;
+  readonly VITE_FIREBASE_APIKEY: string;
+  readonly VITE_FIREBASE_AUTHDOMAIN: string;
+  readonly VITE_FIREBASE_PROJECTID: string;
+  readonly VITE_FIREBASE_STORAGEBUCKET: string;
+  readonly VITE_FIREBASE_MESSAGINGSENDERID: string;
+  readonly VITE_FIREBASE_APPID: string;
+
+  readonly VITE_PUSHER_CLUSTER: string;
+  readonly VITE_PUSHER_APPKEY: string;
 }
 
 interface ImportMeta {

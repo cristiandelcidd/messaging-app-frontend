@@ -14,8 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "noUnusedParameters": true,
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "include": ["./src"]
+  "include": ["./src", "src/context/auth/.tsx"]
 }
